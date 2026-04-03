@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrevista – Saúde de Jovens</title>
+</head>
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 16px;
+      margin: 20px 0 10px;
+      color: #666;
+      border-bottom: 1px solid #302f2f;
+      padding-bottom: 5px;
+    }
+    .question {
+      background: #fafafa;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      animation: fade 0.3s ease;
+      display: none;
+    }
+    .question.active {
+      display: block;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .question p {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+    label {
+      display: block;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    label:hover {
+      background: #f0f0f0;
+    }
+    input[type="radio"]:checked + span {
+      font-weight: bold;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #333;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #111;
+    }
+    .nav {
+      display: flex;
+      gap: 10px;
+    }
+    #mensagem {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 20px; }
+      .question { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Saúde de Jovens e Adolescentes</h1>
+
+  <form id="formulario">
+
+   
+    <div class="question">
+      <h2>Identificação</h2>
+      <input type="text" name="turma" placeholder="Turma" required>
+      <input type="number" name="idade" placeholder="Idade" required>
+    </div>
+
+   
+    <div class="question">
+      <p>Você realiza atividade fora da escola?</p>
+      <label><input type="radio" name="atividade" value="sim" onclick="toggleQual('atividadeQual', true)"> Sim</label>
+      <label><input type="radio" name="atividade" value="nao" onclick="toggleQual('atividadeQual', false)"> Não</label>
+      <input type="text" id="atividadeQual" name="atividade_qual" placeholder="Qual?" style="display:none; margin-top:10px;">
+    </div>
+ 
+    <div class="question">
+      <h2>Dimensão Biológica</h2>
+      <p>Você está com as vacinas em dia?</p>
+      <label><input type="radio" name="vacina" value="sim"> Sim</label>
+      <label><input type="radio" name="vacina" value="nao"> Não</label>
+      <label><input type="radio" name="vacina" value="nao_sei"> Não sei</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Com que frequência você realiza exames de rotina?</p>
+      <label><input type="radio" name="exames" value="anual"> Anualmente</label>
+      <label><input type="radio" name="exames" value="2anos"> 2 anos ou mais</label>
+      <label><input type="radio" name="exames" value="nunca"> Nunca</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você costuma procurar um médico quando apresenta sintomas de doença?</p>
+      <label><input type="radio" name="medico" value="sempre"> Sempre</label>
+      <label><input type="radio" name="medico" value="asvezes"> Às vezes</label>
+      <label><input type="radio" name="medico" value="nunca"> Raramente/Nunca</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você pratica exercícios físicos regularmente?</p>
+      <label><input type="radio" name="exercicio" value="sim"> Sim</label>
+      <label><input type="radio" name="exercicio" value="nao"> Não</label>
+    </div>
+
+  
+    <div class="question">
+      <p>Como você avalia sua alimentação?</p>
+      <label><input type="radio" name="alimentacao" value="saudavel"> Saudável</label>
+      <label><input type="radio" name="alimentacao" value="parcial"> Parcialmente saudável</label>
+      <label><input type="radio" name="alimentacao" value="pouco"> Pouco saudável</label>
+    </div>
+
+   
+    <div class="question">
+      <p>Você já utilizou medicamentos sem orientação médica?</p>
+      <label><input type="radio" name="medicamento" value="sim"> Sim</label>
+      <label><input type="radio" name="medicamento" value="nao"> Não</label>
+    </div>
+
+   
+    <div class="question">
+      <h2>Dimensão Social</h2>
+      <p>Você já deixou de buscar atendimento de saúde por dificuldades (tempo, distância, dinheiro)?</p>
+      <label><input type="radio" name="dificuldade" value="sim" onclick="toggleQual('dificuldadeQual', true)"> Sim</label>
+      <label><input type="radio" name="dificuldade" value="nao" onclick="toggleQual('dificuldadeQual', false)"> Não</label>
+      <input type="text" id="dificuldadeQual" name="dificuldade_qual" placeholder="Qual?" style="display:none; margin-top:10px;">
+    </div>
+
+   
+    <div class="question">
+      <p>Você considera que tem acesso fácil a serviços de saúde (posto, hospital, atendimento)?</p>
+      <label><input type="radio" name="acesso" value="sim"> Sim</label>
+      <label><input type="radio" name="acesso" value="medio"> Mais ou menos</label>
+      <label><input type="radio" name="acesso" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Na sua casa há acesso adequado a saneamento básico (água tratada e esgoto)?</p>
+      <label><input type="radio" name="saneamento" value="sim"> Sim</label>
+      <label><input type="radio" name="saneamento" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você já participou de campanhas de saúde (ex: vacinação, prevenção)?</p>
+      <label><input type="radio" name="campanhas" value="sim"> Sim</label>
+      <label><input type="radio" name="campanhas" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você acredita que sua condição de vida influencia sua saúde?</p>
+      <label><input type="radio" name="condicao" value="sim"> Sim</label>
+      <label><input type="radio" name="condicao" value="nao"> Não</label>
+    </div>
+
+   
+    <div class="question">
+      <p>Você recebe informações sobre saúde na escola? Ou dos responsáveis?</p>
+      <label><input type="radio" name="escola" value="frequencia"> Frequentemente</label>
+      <label><input type="radio" name="escola" value="medio"> Às vezes</label>
+      <label><input type="radio" name="escola" value="nunca"> Nunca</label>
+    </div>
+
+    
+    <div class="question">
+      <h2>Dimensão Mental</h2>
+      <p>Você considera sua saúde mental boa atualmente?</p>
+      <label><input type="radio" name="mental" value="sim"> Sim</label>
+      <label><input type="radio" name="mental" value="medio"> Mais ou menos</label>
+      <label><input type="radio" name="mental" value="nao"> Não</label>
+    </div>
+
+  
+    <div class="question">
+      <p>Você acha que possui algum transtorno psicológico não diagnosticado? Pretende procurar algum diagnóstico ou tratamento?</p>
+      <label><input type="radio" name="sus" value="sim"> Sim, pretendo</label>
+      <label><input type="radio" name="sus" value="simnao"> Sim, mas não pretendo</label>
+      <label><input type="radio" name="sus" value="nao"> Não</label>
+    </div>
+
+   
+    <div class="question">
+      <p>Você possui algum transtorno psicológico diagnosticado (ansiedade, insônia, bipolaridade, depressão etc)?</p>
+      <label><input type="radio" name="transtorno" value="sim" onclick="toggleQual('transtornoQual', true)"> Sim</label>
+      <label><input type="radio" name="transtorno" value="nao" onclick="toggleQual('transtornoQual', false)"> Não</label>
+      <input type="text" id="transtornoQual" name="transtorno_qual" placeholder="Qual?" style="display:none; margin-top:10px;">
+    </div>
+
+   
+    <div class="question">
+      <p>Você costuma dormir bem (entre 7 e 9 horas por noite)?</p>
+      <label><input type="radio" name="descanso" value="sim"> Sim</label>
+      <label><input type="radio" name="descanso" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você sente estresse frequente relacionado à escola ou vida pessoal?</p>
+      <label><input type="radio" name="estresse" value="sim"> Sim</label>
+      <label><input type="radio" name="estresse" value="medio"> Às vezes</label>
+      <label><input type="radio" name="estresse" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você já procurou ajuda profissional (psicólogo, por exemplo)?</p>
+      <label><input type="radio" name="ajuda" value="sim"> Sim</label>
+      <label><input type="radio" name="ajuda" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você sente que tem apoio social (família ou amigos)?</p>
+      <label><input type="radio" name="apoio" value="sim"> Sim</label>
+      <label><input type="radio" name="apoio" value="medio"> Mais ou Menos</label>
+      <label><input type="radio" name="apoio" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <h2>Percepção sobre a Saúde Pública no Brasil</h2>
+      <p>Você acredita que o sistema público de saúde atende bem a população?</p>
+      <label><input type="radio" name="assistencia" value="sim"> Sim</label>
+      <label><input type="radio" name="assistencia" value="medio"> Parcialmente</label>
+      <label><input type="radio" name="assistencia" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="question">
+      <p>Você já utilizou o sistema público de saúde (SUS)?</p>
+      <label><input type="radio" name="sistema" value="sim"> Sim</label>
+      <label><input type="radio" name="sistema" value="nao"> Não</label>
+    </div>
+
+   
+    <div class="question">
+      <p>Como você avalia a qualidade do atendimento público de saúde?</p>
+      <label><input type="radio" name="qualidade" value="boa" onclick="toggleQual('problemaSus', false)"> Boa</label>
+      <label><input type="radio" name="qualidade" value="regular" onclick="toggleQual('problemaSus', false)"> Regular</label>
+      <label><input type="radio" name="qualidade" value="ruim" onclick="toggleQual('problemaSus', true)"> Ruim</label>
+      <input type="text" id="problemaSus" name="problema" placeholder="Relate o problema (opcional)" style="display:none; margin-top:10px;">
+    </div>
+
+   
+    <div class="question">
+      <p>Você confia nas campanhas públicas de saúde (ex: vacinação, prevenção)?</p>
+      <label><input type="radio" name="campanhaPrevencao" value="sim"> Sim</label>
+      <label><input type="radio" name="campanhaPrevencao" value="medio"> Mais ou menos</label>
+      <label><input type="radio" name="campanhaPrevencao" value="nao"> Não</label>
+    </div>
+
+    
+    <div class="nav">
+      <button type="button" onclick="prev()">Voltar</button>
+      <button type="button" id="btnProximo" onclick="next()">Próxima</button>
+    </div>
+    <button type="button" id="btnEnviar" style="display:none;" onclick="enviarFormulario()">Enviar</button>
+
+  </form>
+
+  <p id="mensagem"></p>
+</div>
+
+<script>
+  const questions = document.querySelectorAll(".question");
+  const mensagem = document.getElementById("mensagem");
+  const btnProximo = document.getElementById("btnProximo");
+  const btnEnviar = document.getElementById("btnEnviar");
+  let current = 0;
+
+  function showQuestion(index) {
+    questions.forEach(q => q.classList.remove("active"));
+    questions[index].classList.add("active");
+
+    if (index === questions.length - 1) {
+      btnProximo.style.display = "none";
+      btnEnviar.style.display = "block";
+    } else {
+      btnProximo.style.display = "block";
+      btnEnviar.style.display = "none";
+    }
+  }
+
+  showQuestion(current);
+
+  window.next = function () {
+    if (current < questions.length - 1) {
+      current++;
+      showQuestion(current);
+    }
+  };
+
+  window.prev = function () {
+    if (current > 0) {
+      current--;
+      showQuestion(current);
+    }
+  };
+
+  window.toggleQual = function (id, mostrar) {
+    const campo = document.getElementById(id);
+    if (!campo) return;
+    if (mostrar) {
+      campo.style.display = "block";
+    } else {
+      campo.style.display = "none";
+      campo.value = "";
+    }
+  };
+
+  window.enviarFormulario = async function () {
+    const form = document.getElementById("formulario");
+    const dados = new FormData(form);
+
+    btnEnviar.disabled = true;
+    btnEnviar.innerText = "Enviando...";
+
+    try {
+      const response = await fetch("https://formspree.io/f/xwvwljbo", {
+        method: "POST",
+        body: dados,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        mensagem.style.color = "#2e7d32";
+        mensagem.innerText = "Formulário enviado com sucesso! ✅";
+        form.reset();
+        current = 0;
+        showQuestion(current);
+      } else {
+        const erro = await response.json();
+        mensagem.style.color = "red";
+        mensagem.innerText = "Erro ao enviar: " + (erro.error || "Tente novamente.");
+      }
+    } catch (err) {
+      mensagem.style.color = "red";
+      mensagem.innerText = "Erro de conexão. Verifique sua internet.";
+    } finally {
+      btnEnviar.disabled = false;
+      btnEnviar.innerText = "Enviar";
+    }
+  };
+</script>
+</body>
+</html>
